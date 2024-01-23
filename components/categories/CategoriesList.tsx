@@ -4,7 +4,7 @@ import React from 'react'
 
 
 const fetchData = async (): Promise<TCategory[] | null> => {
-  const response = await fetch("http://localhost:3000/api/categories");
+  const response = await fetch(`${process.env.NEXTAUTH_URL}/api/categories`);
   try {
     if (response.ok) {
       const data = await response.json();

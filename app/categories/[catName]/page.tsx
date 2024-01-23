@@ -6,7 +6,7 @@ import React from "react";
 
 const fetchdata = async (catName: string): Promise<TPost[] | null> => {
   try {
-    const res = await fetch(`http://localhost:3000/api/categories/${catName}`, {
+    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/categories/${catName}`, {
       cache: "no-store",
     });
     if (res.ok) {

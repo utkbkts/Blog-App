@@ -12,7 +12,7 @@ export const metadata = {
 
 const getPosts = async (email: string) => {
   try {
-    const res = await fetch(`http://localhost:3000/api/authors/${email}`);
+    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/authors/${email}`);
     const { posts } = await res.json();
     return posts;
   } catch (error) {

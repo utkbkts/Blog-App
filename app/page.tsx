@@ -11,7 +11,7 @@ interface Props {
 }
 
 const fetchData = async (): Promise<TPost[] | null> => {
-  const response = await fetch("http://localhost:3000/api/posts", {
+  const response = await fetch(`${process.env.NEXTAUTH_URL}/api/posts`, {
     cache: "no-store",
   });
   try {
