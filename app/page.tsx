@@ -3,9 +3,9 @@ import PostList from "@/components/post/PostList";
 import { TPost } from "@/types/CategoryType";
 import { getServerSession } from "next-auth";
 import React from "react";
-import { authOptions } from "./api/auth/[...nextauth]/route";
 import prisma from "@/libs/prismadb";
 import Pagination from "@/components/pagination/Pagination";
+import { authOptions } from "@/libs/AuthOptions";
 interface Props {
   searchParams: { page: string };
 }

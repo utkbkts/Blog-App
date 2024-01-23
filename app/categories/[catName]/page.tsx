@@ -1,5 +1,5 @@
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import PostList from "@/components/post/PostList";
+import { authOptions } from "@/libs/AuthOptions";
 import { TPost } from "@/types/CategoryType";
 import { getServerSession } from "next-auth";
 import React from "react";

@@ -3,8 +3,8 @@ import { TPost } from "@/types/CategoryType";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 import React from "react";
-import { authOptions } from "../api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
+import { authOptions } from "@/libs/AuthOptions";
 
 export const metadata = {
   title: "Dashboard",

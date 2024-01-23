@@ -1,11 +1,11 @@
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import EditListPost from '@/components/editpost/EditListPost';
+import { authOptions } from '@/libs/AuthOptions';
 import { TPost } from '@/types/CategoryType';
 import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
 import React from 'react'
 
-const getPosts = async (id:string): Promise<TPost[] | null> => {
+const getPosts = async (id:string): Promise<TPost | null> => {
     const response = await fetch(`http://localhost:3000/api/posts/${id}`, {
       cache: "no-store",
     });

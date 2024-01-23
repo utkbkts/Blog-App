@@ -1,5 +1,5 @@
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import DeleteButton from "@/components/deletepost/DeleteButton";
+import { authOptions } from "@/libs/AuthOptions";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
 import Link from "next/link";
