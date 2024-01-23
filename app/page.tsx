@@ -9,7 +9,7 @@ import { authOptions } from "@/libs/AuthOptions";
 interface Props {
   searchParams: { page: string };
 }
-
+export const dynamic = 'force-dynamic'
 const fetchData = async (): Promise<TPost[] | null> => {
   const response = await fetch(`${process.env.NEXTAUTH_URL}/api/posts`, {
     cache: "no-store",
