@@ -1,34 +1,35 @@
+"use client"
 import moment from "moment";
 import Image from "next/image";
-import React from "react";
-import DeleteComment from "../deletecomment/DeleteComment";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/libs/AuthOptions";
+import React, { useEffect, useState } from "react";
+import DeleteComment from "../../deletecomment/DeleteComment";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
-const fetchData = async () => {
-  const response = await fetch(`${process.env.NEXTAUTH_URL}/api/comment`, {
-    cache: "no-store",
-  });
-  try {
-    if (response.ok) {
-      const data = await response.json();
-      return data;
-    }
-  } catch (error) {
-    console.log(error);
-  }
-  return null;
-};
 
-const Comments = async () => {
-  const data = await fetchData();
-  const session:any = await getServerSession(authOptions);
+const Comments =  ({ postId }:any) => {
+  const [comments, setComments] = useState([]);
+  const {data:session}=useSession()
+  const router = useRouter()
+  useEffect(() => {
+    
+    const fetchComments = async () => {
+      const response = await fetch(`/api/comment/${postId}`);
+      if (response.ok) {
+        const data = await response.json();
+        router.refresh()
+        setComments(data);
+      }
+    };
+
+    fetchComments();
+  }, [postId]);
   
   return (
     <div className="w-full h-[400px] overflow-y-scroll p-2">
       <div className="flex flex-col gap-4">
-        {data &&
-          data.map((item: any) => (
+        {comments &&
+          comments.map((item: any) => (
             <div key={item.id} className="flex gap-2 bg-gray-400 p-1">
               <div className="flex-1">
                 <Image

@@ -43,7 +43,7 @@ export async function POST(req: Request) {
 export async function GET() {
   try {
     const posts = await prisma.post.findMany({
-      include: { author: { select: { name: true } } },
+      include: { author: { select: { name: true } }, Comment: true, },
       orderBy: {
         createdAt: "desc",
       },

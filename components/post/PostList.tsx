@@ -5,6 +5,7 @@ import React from "react";
 import DeleteButton from "../deletepost/DeleteButton";
 import { useRouter } from "next/navigation";
 import { Session } from "next-auth";
+import { FaRegCommentAlt } from "react-icons/fa";
 
 interface PostProps {
   id: string;
@@ -16,7 +17,8 @@ interface PostProps {
   content: string;
   links?: string[];
   category?: string;
-  session:Session | null
+  session: Session | null;
+  post:any
 }
 
 const PostList = async ({
@@ -30,8 +32,8 @@ const PostList = async ({
   links,
   category,
   session,
+  post
 }: PostProps) => {
-
   const isEditable = session && session?.user?.email === authorEmail;
   const dateObject = new Date(date);
   const options: Intl.DateTimeFormatOptions = {
@@ -40,6 +42,7 @@ const PostList = async ({
     year: "numeric",
   };
   const router = useRouter();
+  
   const formattedDate = dateObject.toLocaleDateString("en-US", options);
   return (
     <div className="border-t border-t-gray-400 p-2 ">
@@ -88,7 +91,9 @@ const PostList = async ({
         <span className="px-4 py-1 flex items-center justify-center rounded-md bg-slate-800 text-white cursor-pointer w-1/4">
           {category && <Link href={`/categories/${category}`}>{category}</Link>}
         </span>
-        <span className="text-gray-800 font-semibold dark:text-white">{content}</span>
+        <span className="text-gray-800 font-semibold dark:text-white">
+          {content}
+        </span>
         {links && (
           <div className="my-4 flex flex-col gap-3">
             {links.map((link, i) => (
@@ -116,6 +121,11 @@ const PostList = async ({
           </div>
         )}
       </div>
+     <div className="flex items-center gap-4">
+     <span className="relative">
+        <FaRegCommentAlt />
+        <span className="absolute flex items-center justify-center top-[-12px] right-[-10px] bg-black dark:bg-white text-white dark:text-black font-bold w-[16px] h-[16px] rounded-full">{post.Comment.length}</span>
+      </span>
       {isEditable && (
         <div className="flex items-center gap-2">
           <div className="py-2 px-4 rounded-md bg-zinc-400 text-black">
@@ -126,6 +136,7 @@ const PostList = async ({
           </div>
         </div>
       )}
+     </div>
     </div>
   );
 };

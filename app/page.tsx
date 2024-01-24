@@ -23,10 +23,11 @@ const fetchData = async (): Promise<TPost[] | null> => {
   }
   return null;
 };
+
 const Home = async ({ searchParams: { page = "1" } }: Props) => {
   const data = await fetchData();
   const session = await getServerSession(authOptions);
-
+  
   const currentPage = parseInt(page);
   const pageSize = 4;
   const heroItemCount = 1;
@@ -37,6 +38,7 @@ const Home = async ({ searchParams: { page = "1" } }: Props) => {
   const startIndex = (currentPage - 1) * pageSize;
   const endIndex = startIndex + pageSize;
   const paginatedProducts = data?.slice(startIndex, endIndex);
+  
   return (
     <div>
       <CategoriesList />
@@ -54,6 +56,7 @@ const Home = async ({ searchParams: { page = "1" } }: Props) => {
             content={post.content}
             links={post.links || []}
             session={session}
+            post={post}
           />
         ))
       ) : (

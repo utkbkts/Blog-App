@@ -1,5 +1,5 @@
 import Comment from "@/components/comment/Comment";
-import Comments from "@/components/comment/Comments";
+import Comments from "@/components/comment/[id]/Comments";
 import DeleteButton from "@/components/deletepost/DeleteButton";
 import { authOptions } from "@/libs/AuthOptions";
 import { getServerSession } from "next-auth";
@@ -21,6 +21,8 @@ const fetchdata = async (id: string) => {
   }
   return null;
 };
+
+
 
 const DetailByID = async ({ params }: { params: { id: string } }) => {
   const { id } = params;
@@ -109,7 +111,7 @@ const DetailByID = async ({ params }: { params: { id: string } }) => {
       )}
       </div>
       <Comment postId={posts.id}/>
-      <Comments/>
+      <Comments postId={posts.id}/>
     </div>
   );
 };
