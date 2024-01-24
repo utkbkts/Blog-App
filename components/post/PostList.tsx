@@ -124,7 +124,7 @@ const PostList = async ({
      <div className="flex items-center gap-4">
      <span className="relative">
         <FaRegCommentAlt />
-        <span className="absolute flex items-center justify-center top-[-12px] right-[-10px] bg-black dark:bg-white text-white dark:text-black font-bold w-[16px] h-[16px] rounded-full">{post.Comment.length}</span>
+     {post && post?.Comment?.length > 0 ? (   <span className="absolute flex items-center justify-center top-[-12px] right-[-10px] bg-black dark:bg-white text-white dark:text-black font-bold w-[16px] h-[16px] rounded-full">{post.Comment.length}</span>):("")}
       </span>
       {isEditable && (
         <div className="flex items-center gap-2">

@@ -6,9 +6,12 @@ import React from "react";
 
 const fetchdata = async (catName: string): Promise<TPost[] | null> => {
   try {
-    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/categories/${catName}`, {
-      cache: "no-store",
-    });
+    const res = await fetch(
+      `${process.env.NEXTAUTH_URL}/api/categories/${catName}`,
+      {
+        cache: "no-store",
+      }
+    );
     if (res.ok) {
       const categories = await res.json();
       const posts = categories.posts;
@@ -25,7 +28,7 @@ const CategoriesDetail = async ({
 }: {
   params: { catName: string };
 }) => {
-  const session = await getServerSession(authOptions)
+  const session = await getServerSession(authOptions);
   const category = params.catName;
   const posts = await fetchdata(category);
 
@@ -35,26 +38,23 @@ const CategoriesDetail = async ({
         <span>Category:</span>
         {decodeURIComponent(category)}
       </h1>
-      {posts && posts?.length > 0 ? (
-        posts.map((post:TPost) => (
+      {posts &&
+        posts?.map((post: TPost) => (
           <PostList
-          key={post.id}
-          id={post.id}
-          author={post.author.name}
-          authorEmail={post.authorEmail}
-          date={post.createdAt}
-          thumbnail={post.imageUrl}
-          category={post.catName}
-          title={post.title}
-          content={post.content}
-          links={post.links || []}
-          session={session}
-          post={post}
+            key={post.id}
+            id={post.id}
+            author={post.author.name}
+            authorEmail={post.authorEmail}
+            date={post.createdAt}
+            thumbnail={post.imageUrl}
+            category={post.catName}
+            title={post.title}
+            content={post.content}
+            links={post.links || []}
+            session={session}
+            post={post}
           />
-        ))
-      ) : (
-        <h1>No Posts to display</h1>
-      )}
+        ))}
     </div>
   );
 };

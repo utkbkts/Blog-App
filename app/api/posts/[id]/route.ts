@@ -14,6 +14,7 @@ export async function GET(
       include: {
         author: true,
         category: true,
+        Comment:true
       },
     });
     return NextResponse.json(post);

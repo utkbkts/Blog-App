@@ -37,7 +37,7 @@ const DetailByID = async ({ params }: { params: { id: string } }) => {
     day: "numeric",
     year: "numeric",
   };
-
+  
   const formattedDate = dateObject.toLocaleDateString("en-US", options);
   return (
     <div>
@@ -111,7 +111,7 @@ const DetailByID = async ({ params }: { params: { id: string } }) => {
       )}
       </div>
       <Comment postId={posts.id}/>
-      <Comments postId={posts.id}/>
+     {posts && posts?.Comment?.length > 0 ?( <Comments postId={posts.id}/>):(<h1 className="font-bold dark:text-white text-black text-2xl text-center mt-6">No comments yet</h1>)}
     </div>
   );
 };
