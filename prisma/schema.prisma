@@ -2,12 +2,12 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-    provider = "mongodb"
-    url      = env("DATABASE_URL")
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
 }
 
 model Account {
@@ -46,6 +46,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   posts         Post[]
+  Comment       Comment[]
 }
 
 model VerificationToken {
@@ -70,6 +71,7 @@ model Post {
   links       String[]
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
+  Comment     Comment[]
 }
 
 model Category {
@@ -77,4 +79,16 @@ model Category {
   catName String   @unique
   posts   Post[]
   postIDs String[] @db.ObjectId
+}
+
+model Comment {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  body      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    String   @db.ObjectId
+  postId    String   @db.ObjectId
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
 }

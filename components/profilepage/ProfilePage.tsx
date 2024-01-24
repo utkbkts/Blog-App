@@ -58,7 +58,7 @@ const ProfilePage = ({ session }: Props) => {
     }
   };
   return (
-    <div className="shadow-xl w-[500px] mt-4 rounded-md shadow-gray-500 h-[300px] p-2">
+    <div className="dark:shadow-xl shadow-sm w-[500px] mt-4 rounded-md shadow-gray-500 h-[300px] p-2">
       <form onSubmit={handleSubmit} className="flex gap-2 mt-4">
         <div className="flex-1 flex items-center mt-4 justify-center flex-col">
             <Image
@@ -84,7 +84,7 @@ const ProfilePage = ({ session }: Props) => {
             name="name"
             id=""
             placeholder="Name..."
-            className="w-full border-gray-400 text-black py-2 px-4 outline-none"
+            className="w-full border-gray-800 border text-black py-2 px-4 outline-none"
           />
           <input
             value={email}
@@ -93,7 +93,7 @@ const ProfilePage = ({ session }: Props) => {
             readOnly
             id=""
             placeholder="Email..."
-            className="w-full border-gray-400 text-black py-2 px-4 outline-none"
+            className="w-full border-gray-800 border text-black py-2 px-4 outline-none"
           />
           <button
             type="submit"
