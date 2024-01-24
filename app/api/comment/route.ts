@@ -2,6 +2,7 @@ import { authOptions } from "@/libs/AuthOptions";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 import prisma from "@/libs/prismadb";
+import { revalidatePath } from "next/cache";
 
 export async function POST(req: Request) {
   const session: any = await getServerSession(authOptions);
@@ -18,7 +19,7 @@ export async function POST(req: Request) {
         postId: postId,
       },
     });
-
+    revalidatePath("/detail/[id]")
     return NextResponse.json(newPost);
   } catch (error) {
     return NextResponse.json({ message: "Could not create post." });

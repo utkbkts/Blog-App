@@ -3,6 +3,7 @@
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
+import toast from 'react-hot-toast';
 
 const Comment = ({ postId }: { postId: string }) => {
     const [comment, setComment] = useState('');
@@ -28,7 +29,9 @@ const Comment = ({ postId }: { postId: string }) => {
     
         if (response.ok) {
           router.refresh();
+          toast.success("Comment successfully submitted")
         } else {
+          toast.error("Something went wrong !!")
         }
       };
     
@@ -41,7 +44,7 @@ const Comment = ({ postId }: { postId: string }) => {
           value={comment}
           onChange={(e) => setComment(e.target.value)}
           placeholder="Add your comment"
-          className='w-full h-[250px] resize-none text-black py-2 px-4 outline-none focus:border-blue-400 focus:border'
+          className='w-full h-[250px] border border-gray-500 resize-none text-black py-2 px-4 outline-none focus:border-blue-400 focus:border'
         />
         <button type="submit" className='py-2 px-4 w-full text-white bg-gray-900 hover:bg-gray-500 transition-all duration-300'>Add Comment</button>
       </form>
