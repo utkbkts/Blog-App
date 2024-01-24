@@ -35,7 +35,7 @@ const CategoriesDetail = async ({
         <span>Category:</span>
         {decodeURIComponent(category)}
       </h1>
-      {posts && posts.length > 0 ? (
+      {posts && posts?.length > 0 ? (
         posts.map((post:TPost) => (
           <PostList
           key={post.id}
