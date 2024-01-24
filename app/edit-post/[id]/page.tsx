@@ -6,7 +6,7 @@ import { redirect } from 'next/navigation';
 import React from 'react'
 
 const getPosts = async (id:string): Promise<TPost | null> => {
-    const response = await fetch(`http://localhost:3000/api/posts/${id}`, {
+    const response = await fetch(`${process.env.NEXTAUTH_URL}/api/posts/${id}`, {
       cache: "no-store",
     });
     try {

@@ -8,6 +8,7 @@ const Navbar = () => {
   const { status, data: session } = useSession();
   const [isPopupVisible, setisPopupVisible] = useState(false);
   const popupRef = useRef<HTMLDivElement | null>(null);
+  
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (popupRef.current && !popupRef.current.contains(e.target as Node)) {
@@ -22,7 +23,7 @@ const Navbar = () => {
       document.removeEventListener("click", handleClickOutside);
     };
   }, [isPopupVisible]);
-  
+
   return (
     <div className="flex justify-between pb-4 border-b mb-4">
       <div>
@@ -38,7 +39,7 @@ const Navbar = () => {
       </div>
       <div className="flex items-center gap-4">
         <div>
-          <ThemeToggle/>
+          <ThemeToggle />
         </div>
         {status === "authenticated" ? (
           <div ref={popupRef} className="flex items-center gap-4 relative">
@@ -69,17 +70,35 @@ const Navbar = () => {
               {session.user?.name?.charAt(0)}
             </span>
             {isPopupVisible && (
-              <div  className="w-[200px] bg-zinc-100 p-2 dark:bg-white dark:text-black z-50 h-auto top-12 right-0 rounded-md absolute flex items-center justify-between flex-col">
+              <div className="w-[200px] bg-zinc-100 p-2 dark:bg-white dark:text-black z-50 h-auto top-12 right-0 rounded-md absolute flex items-center justify-between flex-col">
                 <div className="flex flex-col items-center justify-center gap-3">
                   <span className="font-bold text-md">
                     {session.user?.name}
                   </span>
                   <span>{session.user?.email}</span>
-                  <Link onClick={() => setisPopupVisible(!isPopupVisible)} href={"/dashboard"}>Dashboard</Link>
-                  <Link onClick={() => setisPopupVisible(!isPopupVisible)} href={"/create-post"}>Create Post</Link>
-                  <Link onClick={() => setisPopupVisible(!isPopupVisible)} href={`/profile/${(session?.user as { id: string })?.id}`}>Profile</Link>
+                  <Link
+                    onClick={() => setisPopupVisible(!isPopupVisible)}
+                    href={"/dashboard"}
+                  >
+                    Dashboard
+                  </Link>
+                  <Link
+                    onClick={() => setisPopupVisible(!isPopupVisible)}
+                    href={"/create-post"}
+                  >
+                    Create Post
+                  </Link>
+                  <Link
+                    onClick={() => setisPopupVisible(!isPopupVisible)}
+                    href={`/profile/${(session?.user as { id: string })?.id}`}
+                  >
+                    Profile
+                  </Link>
                 </div>
-                <span className="btn cursor-pointer mt-4" onClick={() => signOut()}>
+                <span
+                  className="btn cursor-pointer mt-4"
+                  onClick={() => signOut()}
+                >
                   Sign Out
                 </span>
               </div>
