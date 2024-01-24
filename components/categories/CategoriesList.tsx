@@ -15,7 +15,7 @@ const fetchData = async (): Promise<TCategory[] | null> => {
     return null;
   }
   return null;
-
+//!not
 };
 
 const CategoriesList = async() => {
