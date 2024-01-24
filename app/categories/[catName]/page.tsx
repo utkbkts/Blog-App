@@ -49,6 +49,7 @@ const CategoriesDetail = async ({
           content={post.content}
           links={post.links || []}
           session={session}
+          post={post}
           />
         ))
       ) : (
