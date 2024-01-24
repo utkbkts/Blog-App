@@ -13,6 +13,7 @@ export type TCategory = {
     links: null | string[];
     createdAt: string;
     authorEmail: string;
+    post:any,
     author: {
       name: string;
     };

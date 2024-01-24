@@ -18,7 +18,7 @@ interface PostProps {
   links?: string[];
   category?: string;
   session: Session | null;
-  post:any
+  post:any | null
 }
 
 const PostList = async ({
