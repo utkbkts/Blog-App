@@ -11,7 +11,10 @@ const config: Config = {
     extend: {
      colors:{
       dark:"#312480",
-      medium:"#293245"
+      medium:"#293245",
+      darkcolor:"#2a3447",
+      softcolor:"#ddd",
+      darkbg: "#222b3c",
      }
     },
   },

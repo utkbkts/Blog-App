@@ -5,6 +5,7 @@ import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
 import { NextAuthProvider } from "@/components/Provider";
 import { Toaster } from "react-hot-toast";
+import PathnameLayout from "@/components/layout/PathnameLayout";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -20,14 +21,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${montserrat.className} dark:bg-medium dark:text-white`}>
+      <body
+        className={`${montserrat.className} dark:bg-medium dark:text-white`}
+      >
         <NextAuthProvider>
-          <div className="lg:max-w-[900px] lg:px-16 mx-auto py-8 shadow-xl dark:shadow-gray-800 min-h-screen flex flex-col px-8">
-            <Navbar />
+          <PathnameLayout>
             <div className="flex-auto">{children}</div>
-            <Footer />
-            <Toaster position="top-center"/>
-          </div>
+            <Toaster position="top-center" />
+          </PathnameLayout>
         </NextAuthProvider>
       </body>
     </html>
