@@ -22,29 +22,29 @@ interface Props {
     color: string[];
     name: string;
     chartData: object[];
-    value:number;
+    value: number;
   }
   ChartBoxComment:{
     title: string;
-    color: string;
+    color: string[];
     icon:  React.ReactElement;
-    percantage:number;
+    percentage:number;
     dataKey: string;
     chartData: object[];
   }
   ChartBoxBlog:{
     title: string;
-    color: string;
+    color: string[];
     icon:  React.ReactElement;
-    percantage:number;
+    percentage:number;
     dataKey: string;
     chartData: object[];
   }
   ChartTotalBlogs:{
     title: string;
-    color: string;
+    color: string[];
     icon:  React.ReactElement;
-    percantage:number;
+    percentage:number;
     dataKey: string;
     chartData: object[];
   }

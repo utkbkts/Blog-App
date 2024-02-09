@@ -2,13 +2,10 @@
 
 import React, { useEffect, useState } from 'react';
 
-interface MonthlyCounts {
-  [key: string]: number;
-}
 
 const useMonthUsers = () => {
   const [dataFetch, setdataFetch] = useState([]);
-  const [monthlyUsers, setMonthlyUsers] = useState([]);
+  const [monthlyUsers, setMonthlyUsers] = useState<{ name: string; visit: number }[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,7 +24,7 @@ const useMonthUsers = () => {
 
   useEffect(() => {
     if (dataFetch.length > 0) {
-      const monthlyCounts: MonthlyCounts = {};
+      const monthlyCounts: { [key: string]: number } = {};
       dataFetch.forEach((comment: any) => {
         const expiresDate = new Date(comment.sessions[0]?.expires);
         const month = expiresDate.toLocaleString("en-US", {
@@ -40,7 +37,6 @@ const useMonthUsers = () => {
         }
       });
 
-      // Convert the object to an array
       const monthlyData = Object.keys(monthlyCounts).map((month) => ({
         name: month,
         visit: monthlyCounts[month],

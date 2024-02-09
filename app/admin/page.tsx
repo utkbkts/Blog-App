@@ -51,7 +51,7 @@ const barChartBoxRevenue = {
 const ChartBoxCategory={
   color:["#0088FE","#00C49F","#FFBB28","#FF8042"],
   name:"Best Category",
-  value:dataSort,
+  value: dataSort.length > 0 ? dataSort[0] : 0,
   chartData:dataSort
 }
 //!totalcomment

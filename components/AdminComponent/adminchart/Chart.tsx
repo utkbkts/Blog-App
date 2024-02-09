@@ -3,12 +3,12 @@ import React from "react";
 import { Line, LineChart, ResponsiveContainer, Tooltip } from "recharts";
 
 type Props = {
-  color: string;
+  color: string[];
   icon:  React.ReactElement;
   title: string;
   dataKey: string;
   number?: number | string;
-  percantage: number;
+  percentage: number;
   chartData: object[];
 };
 
@@ -23,7 +23,7 @@ const Chart = (props:Props) => {
         </div>
         <div className="flex flex-col gap-1">
           <h1>{props.number}</h1>
-          <Link className="whitespace-nowrap" href={"/"} style={{ color: props.color }}>
+          <Link className="whitespace-nowrap" href={"/"} style={{ color: props.color[0] }}>
             View All
           </Link>
         </div>
@@ -49,10 +49,10 @@ const Chart = (props:Props) => {
         <div className="flex flex-col items-end justify-end">
           <span
             className={`font-bold ${
-              props.percantage < 0 ? "text-red-500" : "text-green-500"
+              props.percentage < 0 ? "text-red-500" : "text-green-500"
             }`}
           >
-            {props.percantage}
+            {props.percentage}
           </span>
           <span className="text-[14px] text-right">This Month</span>
         </div>
